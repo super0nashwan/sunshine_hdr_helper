@@ -13,9 +13,9 @@ There are currently three available commands (for the primary display only):
 - `set-icc-profile`, `sicc`: Change the default ICC profile to another one associated with the primary display. This is the most important one! Each HDR client needs to be set up with the [Windows HDR Calibration Tool](https://support.microsoft.com/en-gb/windows/calibrate-your-hdr-display-using-the-windows-hdr-calibration-app-f30f4809-3369-43e4-9b02-9eabebd23f19) (while streaming to Moonlight), to match the client's display capabilities. Without this, your client will inherit the HDR calibration of your host, with an incorrect gamma curve. For example, my Steam Deck OLED has a vastly different max luminance to my LG C2 OLED used on the host machine. Some recent mobile phone screens have a crazy bright max luminance, far beyond anything you'll find in the desktop monitor space. Might as well make use of it, eh?
 
 Example usage:
-- `sunshine-helper.exe -- change-primary-display-mode 1920 1080 60`
-- `sunshine-helper.exe -- set-sdr-level 50`
-- `sunshine-helper.exe -- set-icc-profile "My awesome ICC profile.icc"`
+- `sunshine_helper.exe change-primary-display-mode 1920 1080 60`
+- `sunshine_helper.exe set-sdr-level 50`
+- `sunshine_helper.exe set-icc-profile "My awesome ICC profile.icc"`
 
 There is some limited help text available with the `--help` flag.
 
