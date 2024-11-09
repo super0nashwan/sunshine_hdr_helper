@@ -1,11 +1,3 @@
-/*
-Utility functions to get display information from the Windows API.
-- Attached displays [DONE]
-- HDR status
-- Supported resolutions and refresh rates [DONE]
-- Associated ICC profiles
-*/
-
 use windows::{
     Win32::{
         Graphics::Gdi::{

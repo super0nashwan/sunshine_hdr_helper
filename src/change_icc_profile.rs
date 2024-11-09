@@ -1,9 +1,3 @@
-/*
-- A function to retrieve ICC profiles for primary display using the Windows API.
-- A function to set an ICC profile for the primary display, given the profile name and confirmed as a valid profile, using the Windows API.
-*/
-
-
 use windows::Win32::Graphics::Gdi::{CreateDCW, DeleteDC};
 use windows::Win32::Foundation::LPARAM;
 use windows::core::{PCWSTR, Result};

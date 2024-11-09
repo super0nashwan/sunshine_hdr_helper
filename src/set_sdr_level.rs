@@ -1,22 +1,3 @@
-/*
-We are implementing a part of the Windows API that appears undocumented and not directly supported by the windows Rust crate.
-The function we are targeting adjusts the SDR white level on HDR displays. It takes a value of 1000 to 6000, where each 1000 is 80 nits.
-The Windows UI slider in the Settings app maps this range to 0-100 (i.e. 80-480 nits).
-Documentation here (only the GET, missing the SET we need): https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ne-wingdi-displayconfig_device_info_type
-We need to:
-- Create a struct that represents the parameters for the function [DONE]
-- Create a struct that represents the display information [DONE]
-- Enumerate the displays, storing the needed information [DONE]
-- Pick the primary display, knowing for our personal use that this will be our HDR monitor with HDR enabled. [DONE]
-- Take a user input for the SDR white level and apply it to the primary display. [DONE]
-- Log events and errors to a file. [IN PROGRESS, TODO]
-Considerations:
-- We must be memory safe when marking code as unsafe, knowing we are working at a low level with the Windows API.
-- We will deal with robust error handling when have successfully tested a working implementation. [TODO]
-- Now this is confirmed working, we need to refactor to prevent overlap with our utility functions in displays_info.rs. [TODO]
-*/
-
-
 use std::mem::size_of;
 use windows::Win32::{
     Devices::Display::{

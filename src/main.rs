@@ -84,15 +84,20 @@ enum Commands {
     },
     #[command(
         alias = "cpdm",
-        about = "Change the primary display mode (must be a mode reported by the display)"
+        about = "Change the primary display mode (must be a mode reported by the display unless --unsafe is used)"
     )]
-    ChangePrimaryDisplayMode { // Positional arguments
+    ChangePrimaryDisplayMode {
         #[arg(help = "Width of the display resolution")]
         width: u32,
         #[arg(help = "Height of the display resolution")]
         height: u32,
         #[arg(help = "Refresh rate of the display resolution")]
         refresh_rate: u32,
+        #[arg(
+            long = "unsafe",
+            help = "Don't use this, it is not safe. This bypasses the check for your display's reported supported modes. Only consider this for known working custom resolutions."
+        )]
+        unsafe_mode: bool,
     },
     #[command(
         alias = "ssdrl",
@@ -259,9 +264,10 @@ fn main() {
                 }
             }
         }
-        Commands::ChangePrimaryDisplayMode { width, height, refresh_rate } => {
-            info!("Change primary display mode command received with parameters: {}x{} @{}Hz", width, height, refresh_rate);
-            if change_display_mode::change_primary_display_mode(width, height, refresh_rate) {
+        Commands::ChangePrimaryDisplayMode { width, height, refresh_rate, unsafe_mode } => {
+            info!("Change primary display mode command received with parameters: {}x{} @{}Hz (unsafe: {})",
+            width, height, refresh_rate, unsafe_mode);
+            if change_display_mode::change_primary_display_mode(width, height, refresh_rate, unsafe_mode) {
                 println!("Successfully changed primary display mode to {}x{} @{}Hz", width, height, refresh_rate);
             } else {
                 println!("Failed to change primary display mode to {}x{} @{}Hz", width, height, refresh_rate);
